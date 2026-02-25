@@ -16,9 +16,10 @@
     "continuous-learning"
   ],
   "components": {
-    "skills": 19,
+    "skills": 25,
     "commands": 11,
-    "agents": 9
+    "agents": 9,
+    "superpowers": 8
   },
   "skills": {
     "core": [
@@ -116,6 +117,28 @@
       }
     ]
   },
+  "superpowers": [
+      {
+        "name": "writing-plans",
+        "description": "Create surgical implementation plans with bite-sized tasks"
+      },
+      {
+        "name": "test-driven-development",
+        "description": "TDD discipline - red, green, refactor"
+      },
+      {
+        "name": "systematic-debugging",
+        "description": "Find root cause before fixing"
+      },
+      {
+        "name": "verification-before-completion",
+        "description": "Evidence before claims"
+      },
+      {
+        "name": "subagent-driven-development",
+        "description": "Fresh subagent per task + two-stage review"
+      }
+    ],
   "commands": [
     "forge:brainstorm",
     "forge:research",
@@ -129,10 +152,33 @@
     "forge:help",
     "forge:quick"
   ],
+  "superpowers": [
+      {
+        "name": "writing-plans",
+        "description": "Create surgical implementation plans with bite-sized tasks"
+      },
+      {
+        "name": "test-driven-development",
+        "description": "TDD discipline - red, green, refactor"
+      },
+      {
+        "name": "systematic-debugging",
+        "description": "Find root cause before fixing"
+      },
+      {
+        "name": "verification-before-completion",
+        "description": "Evidence before claims"
+      },
+      {
+        "name": "subagent-driven-development",
+        "description": "Fresh subagent per task + two-stage review"
+      }
+    ],
   "config": {
     "artifact_levels": ["minimal", "intelligent", "maximal"],
     "quality_gates": "configurable",
     "karpathy_enforced": true,
-    "auto_skill_loading": true
+    "auto_skill_loading": true,
+    "includes_superpowers": true
   }
 }
