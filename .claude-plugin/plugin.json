@@ -1,7 +1,7 @@
 {
   "name": "forge",
-  "version": "0.2.0",
-  "description": "FORGE - Comprehensive 9-phase development workflow: Brainstorm → Research → Design → Plan → Build → Test → Validate → Review → Learn. Includes Karpathy-guided debate, Ralph Loop for large tasks, security reviews, and continuous learning.",
+  "version": "0.3.0",
+  "description": "FORGE - Comprehensive 10-phase development workflow with hooks: Initialize → Brainstorm → Research → Design → Plan → Test → Build → Validate → Review → Learn. Includes debugging, Ralph Loop, security reviews, and lifecycle hooks.",
   "author": {
     "name": "Muadh Sambul",
     "email": "user@example.com"
@@ -15,16 +15,23 @@
     "multi-agent",
     "continuous-learning",
     "security",
-    "ralph-loop"
+    "ralph-loop",
+    "hooks",
+    "debugging"
   ],
   "components": {
-    "skills": 27,
-    "commands": 12,
+    "skills": 28,
+    "commands": 14,
     "agents": 10,
-    "superpowers": 8
+    "superpowers": 8,
+    "hooks": 5
   },
   "skills": {
     "core": [
+      {
+        "name": "forge-init",
+        "description": "Initialization phase - detect workspace state and personalize FORGE"
+      },
       {
         "name": "forge-config",
         "description": "User configuration for artifact levels and quality gates"
@@ -150,19 +157,49 @@
     ]
   },
   "commands": [
+    "forge:start",
     "forge:brainstorm",
     "forge:research",
     "forge:design",
     "forge:plan",
-    "forge:build",
     "forge:test",
+    "forge:build",
     "forge:validate",
     "forge:review",
     "forge:learn",
     "forge:help",
     "forge:quick",
-    "forge:ralph"
+    "forge:ralph",
+    "forge:debug"
   ],
+  "hooks": {
+    "PostToolUse": [
+      {
+        "name": "format-on-save",
+        "description": "Auto-format code after edits (prettier, black, etc.)",
+        "personalizable": true
+      },
+      {
+        "name": "type-check",
+        "description": "Run TypeScript type checking on .ts/.tsx saves",
+        "personalizable": true
+      }
+    ],
+    "PreToolUse": [
+      {
+        "name": "block-env-edits",
+        "description": "Warn before editing .env or sensitive files",
+        "personalizable": true
+      }
+    ],
+    "SessionStart": [
+      {
+        "name": "forge-init",
+        "description": "Auto-detect workspace and suggest FORGE startup",
+        "personalizable": true
+      }
+    ]
+  },
   "config": {
     "artifact_levels": ["minimal", "intelligent", "maximal"],
     "quality_gates": "configurable",
@@ -170,6 +207,8 @@
     "auto_skill_loading": true,
     "includes_superpowers": true,
     "security_checks": true,
-    "ralph_loop_enabled": true
+    "ralph_loop_enabled": true,
+    "hooks_enabled": true,
+    "initialization": "auto"
   }
 }
