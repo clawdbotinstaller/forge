@@ -96,12 +96,21 @@ Brainstorm phase spawns 4+ agents in parallel:
 
 Then debaters argue best approach with Karthy guidelines.
 
-### 4. Subagent-Driven Development (Superpowers Pattern)
+### 4. Subagent-Driven Development (Included from Superpowers)
+**Full superpowers integration - no external dependency needed**
+
 Build phase uses fresh subagent per task + two-stage review:
-1. Dispatch implementer
+1. Dispatch implementer (using included `subagent-driven-development` skill)
 2. Spec compliance review
 3. Code quality review (Karthy-focused)
 4. Iterate until approved
+
+**Included superpowers skills:**
+- `writing-plans`: Surgical implementation planning
+- `test-driven-development`: TDD discipline (red-green-refactor)
+- `systematic-debugging`: Root cause investigation
+- `verification-before-completion`: Evidence-based validation
+- `subagent-driven-development`: Fresh subagent per task + two-stage review
 
 ### 5. Dynamic Skill Loading
 Auto-loads skills based on task type:
@@ -185,16 +194,22 @@ forge@local/
 │   │   ├── forge-review.md
 │   │   ├── forge-learn.md
 │   │   └── forge-help.md
-│   └── agents/              # Specialized subagents
-│       ├── brainstormer.md
-│       ├── researcher.md
-│       ├── designer.md
-│       ├── planner.md
-│       ├── builder.md
-│       ├── tester.md
-│       ├── validator.md
-│       ├── reviewer.md
-│       └── archivist.md
+│   ├── agents/              # Specialized subagents
+│   │   ├── brainstormer.md
+│   │   ├── researcher.md
+│   │   ├── designer.md
+│   │   ├── planner.md
+│   │   ├── builder.md
+│   │   ├── tester.md
+│   │   ├── validator.md
+│   │   ├── reviewer.md
+│   │   └── archivist.md
+│   └── superpowers/         # Integrated superpowers skills
+│       ├── writing-plans.md
+│       ├── test-driven-development.md
+│       ├── systematic-debugging.md
+│       ├── verification-before-completion.md
+│       └── subagent-driven-development.md
 ├── commands/                # Slash commands
 │   ├── brainstorm.md
 │   ├── research.md
@@ -220,7 +235,7 @@ FORGE brings together the best from:
 | Source | What FORGE Incorporates |
 |--------|------------------------|
 | **Arkived** | `/arkived:*` commands, compounding philosophy, parallel subagents |
-| **Superpowers** | Writing-plans, subagent-driven-development, systematic-debugging, TDD, verification |
+| **Superpowers** | ✅ FULLY INTEGRATED: Writing-plans, subagent-driven-development, systematic-debugging, TDD, verification (1,309 lines) |
 | **BMAD Method** | Progressive context, implementation readiness checks, project-context.md, parallel research |
 | **SLFG** | Multi-agent debate, Karthy enforcement throughout, file-based agent communication |
 | **Design-Forge** | Stitch integration, design system compliance, React generation |
