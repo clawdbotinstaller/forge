@@ -59,14 +59,22 @@ Each iteration:
 ```bash
 /forge:ralph "Implement user authentication system" \
   --plan docs/forge/plan.md \
-  --completion-promise "ALL TESTS PASS" \
+  --test-plan docs/forge/test-plan.md \
+  --completion-promise "MINOR GATES PASS: Unit tests green, TypeScript clean" \
+  --final-gate "FULL GATES PASS: Integration + E2E tests pass" \
   --max-iterations 50
 ```
 
 **Required flags:**
 - `--plan`: Path to implementation plan
-- `--completion-promise`: Text that signals true completion
+- `--test-plan`: Path to test plan (created in `/forge:test` phase)
+- `--completion-promise`: Text that signals minor gate completion
+- `--final-gate`: Text that signals full test suite completion
 - `--max-iterations`: Safety limit (prevents infinite loops)
+
+**Test Gates (from Test phase):**
+- **Minor Gates**: Run every iteration (unit tests, type checks)
+- **Full Gates**: Run before final commit (integration, E2E)
 
 **Completion Promise Examples:**
 ```
