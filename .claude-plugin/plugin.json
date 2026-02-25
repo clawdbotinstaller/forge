@@ -1,7 +1,7 @@
 {
   "name": "forge",
-  "version": "0.1.0",
-  "description": "FORGE - Comprehensive 9-phase development workflow: Brainstorm → Research → Design → Plan → Build → Test → Validate → Review → Learn. Includes Karpathy-guided debate, dynamic skill loading, and continuous learning.",
+  "version": "0.2.0",
+  "description": "FORGE - Comprehensive 9-phase development workflow: Brainstorm → Research → Design → Plan → Build → Test → Validate → Review → Learn. Includes Karpathy-guided debate, Ralph Loop for large tasks, security reviews, and continuous learning.",
   "author": {
     "name": "Muadh Sambul",
     "email": "user@example.com"
@@ -13,12 +13,14 @@
     "execution",
     "karpathy-guidelines",
     "multi-agent",
-    "continuous-learning"
+    "continuous-learning",
+    "security",
+    "ralph-loop"
   ],
   "components": {
-    "skills": 25,
-    "commands": 11,
-    "agents": 9,
+    "skills": 27,
+    "commands": 12,
+    "agents": 10,
     "superpowers": 8
   },
   "skills": {
@@ -76,6 +78,10 @@
       {
         "name": "forge-help",
         "description": "Smart orchestrator for workflow guidance"
+      },
+      {
+        "name": "forge-ralph",
+        "description": "Ralph Loop for large plans with iterative execution"
       }
     ],
     "agents": [
@@ -114,10 +120,13 @@
       {
         "name": "archivist",
         "description": "Pattern extraction and knowledge capture"
+      },
+      {
+        "name": "security-reviewer",
+        "description": "Security checks before PRs - secrets, injection, auth"
       }
-    ]
-  },
-  "superpowers": [
+    ],
+    "superpowers": [
       {
         "name": "writing-plans",
         "description": "Create surgical implementation plans with bite-sized tasks"
@@ -138,7 +147,8 @@
         "name": "subagent-driven-development",
         "description": "Fresh subagent per task + two-stage review"
       }
-    ],
+    ]
+  },
   "commands": [
     "forge:brainstorm",
     "forge:research",
@@ -150,35 +160,16 @@
     "forge:review",
     "forge:learn",
     "forge:help",
-    "forge:quick"
+    "forge:quick",
+    "forge:ralph"
   ],
-  "superpowers": [
-      {
-        "name": "writing-plans",
-        "description": "Create surgical implementation plans with bite-sized tasks"
-      },
-      {
-        "name": "test-driven-development",
-        "description": "TDD discipline - red, green, refactor"
-      },
-      {
-        "name": "systematic-debugging",
-        "description": "Find root cause before fixing"
-      },
-      {
-        "name": "verification-before-completion",
-        "description": "Evidence before claims"
-      },
-      {
-        "name": "subagent-driven-development",
-        "description": "Fresh subagent per task + two-stage review"
-      }
-    ],
   "config": {
     "artifact_levels": ["minimal", "intelligent", "maximal"],
     "quality_gates": "configurable",
     "karpathy_enforced": true,
     "auto_skill_loading": true,
-    "includes_superpowers": true
+    "includes_superpowers": true,
+    "security_checks": true,
+    "ralph_loop_enabled": true
   }
 }
