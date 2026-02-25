@@ -1,17 +1,17 @@
 # FORGE Master Plugin
 
-**Comprehensive 9-phase development workflow** combining the best of Arkived, Superpowers, and BMAD methodologies.
+**Comprehensive 10-phase development workflow** combining the best of Arkived, Superpowers, and BMAD methodologies. With hooks, initialization, and standalone debugging.
 
 ## Philosophy
 
 **"Knowledge compounds"** - Each workflow makes future work easier. Through progressive context building, Karpathy-guided debate, and continuous learning, FORGE creates a compounding knowledge system.
 
-## 9-Phase Workflow (Test-First)
+## 10-Phase Workflow (Test-First)
 
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│ Brainstorm  │ -> │  Research   │ -> │   Design    │ -> │    Plan     │
-│  (Debate)   │    │  (Validate) │    │   (Stitch)  │    │   (TDD)     │
+│ Initialize  │ -> │ Brainstorm  │ -> │  Research   │ -> │   Design    │
+│   (Setup)   │    │  (Explore)  │    │  (Validate) │    │   (Stitch)  │
 └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
                                                               │
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
@@ -30,7 +30,14 @@
 
 ## Commands
 
-### Phase Commands
+### Entry Points
+| Command | Purpose |
+|---------|---------|
+| `/forge:start` | **Start full 10-phase workflow** (auto-detects workspace) |
+| `/forge:quick` | Streamlined workflow for rapid dev |
+| `/forge:debug` | Standalone debugging (outside main flow) |
+
+### Phase Commands (10 phases)
 | Command | Purpose |
 |---------|---------|
 | `/forge:brainstorm` | Multi-agent exploration with Karpathy debate |
@@ -43,16 +50,19 @@
 | `/forge:review` | Parallel specialized review |
 | `/forge:learn` | Pattern capture & CLAUDE.md update |
 
-### Orchestrator Commands
+### Utility Commands
 | Command | Purpose |
 |---------|---------|
 | `/forge:help` | Show status, recommend next steps |
-| `/forge:quick` | Streamlined workflow for rapid dev |
+| `/forge:ralph` | Ralph Loop for large iterative tasks |
 
 ## Quick Start
 
 ```bash
-# Full workflow (Test-First)
+# Start full workflow (FORGE auto-detects workspace and guides you)
+/forge:start "add user profile feature"
+
+# Or run phases individually
 /forge:brainstorm "add user profile feature"
 /forge:research          # Continue from brainstorm
 /forge:design            # Generate UI specs
@@ -63,12 +73,15 @@
 /forge:review            # Code review
 /forge:learn             # Capture patterns
 
-# Or use smart orchestrator
-/forge:help              # Detects current phase
-/forge:next              # Advance to next phase
+# Debug a bug (standalone, outside main flow)
+/forge:debug "Login timeout error"
 
-# Or quick mode for small changes
+# Quick mode for small changes
 /forge:quick "fix login button color"
+
+# Check status
+/forge:help              # Detects current phase
+/forge:status            # Show detailed progress
 ```
 
 ## Key Features
@@ -98,7 +111,29 @@ Brainstorm phase spawns 4+ agents in parallel:
 
 Then debaters argue best approach with Karthy guidelines.
 
-### 4. Subagent-Driven Development (Included from Superpowers)
+### 4. Initialization (Phase 0) - Personalized Setup
+**Auto-detect workspace and configure FORGE**
+
+`/forge:start` automatically:
+1. Detects project type (React, Python, Rust, etc.)
+2. Checks for existing FORGE state (resume or fresh start)
+3. Personalizes configuration based on project
+4. Suggests appropriate artifact level
+5. Guides through all 10 phases interactively
+
+### 5. Lifecycle Hooks (Personalizable)
+**Automated actions triggered by events**
+
+| Hook | Trigger | Action |
+|------|---------|--------|
+| `PostToolUse/format-on-save` | After file edit | Auto-format (prettier, black, etc.) |
+| `PostToolUse/type-check` | After .ts/.tsx edit | Run TypeScript check |
+| `PreToolUse/block-env-edits` | Before sensitive file edit | Warn about .env, .pem files |
+| `SessionStart/forge-init` | New session | Detect workspace, suggest FORGE |
+
+**Hooks are personalizable per project** - customize in `.claude/hooks/`
+
+### 6. Subagent-Driven Development (Included from Superpowers)
 **Full superpowers integration - no external dependency needed**
 
 Build phase uses fresh subagent per task + two-stage review:
@@ -113,6 +148,19 @@ Build phase uses fresh subagent per task + two-stage review:
 - `systematic-debugging`: Root cause investigation
 - `verification-before-completion`: Evidence-based validation
 - `subagent-driven-development`: Fresh subagent per task + two-stage review
+
+### 7. Standalone Debug Workflow
+**`/forge:debug` - Outside the main 10-phase flow**
+
+For bugs, test failures, or unexpected behavior:
+```
+Analyze → Reproduce → Fix → Verify
+```
+
+- Uses systematic-debugging skill
+- 4-phase standalone workflow
+- Does not affect main FORGE state
+- Perfect for hotfixes
 
 ### 5. Dynamic Skill Loading
 Auto-loads skills based on task type:
