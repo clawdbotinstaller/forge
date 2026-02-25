@@ -6,7 +6,7 @@
 
 **"Knowledge compounds"** - Each workflow makes future work easier. Through progressive context building, Karpathy-guided debate, and continuous learning, FORGE creates a compounding knowledge system.
 
-## 9-Phase Workflow
+## 9-Phase Workflow (Test-First)
 
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
@@ -16,15 +16,17 @@
                                                               │
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
 │    Learn    │ <- │   Review    │ <- │  Validate   │ <- │    Build    │
-│  (Capture)  │    │  (Parallel) │    │ (Evidence)  │    │ (Subagents) │
+│  (Capture)  │    │  (Parallel) │    │ (Evidence)  │    │ (Ralph/Sub) │
 └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-      ^
-      │
-┌─────────────┐
-│    Test     │  <- WHOLE PHASE dedicated to comprehensive testing
-│ (Comprehensive Suite)
-└─────────────┘
+                         ↑                                    ↑
+                         │                                    │
+                    ┌─────────────┐                     ┌─────────────┐
+                    │    Test     │  <- TESTS CREATED   │ Test Gates  │
+                    │   (First)   │     BEFORE BUILD    │  (Passing)  │
+                    └─────────────┘                     └─────────────┘
 ```
+
+**Test-First Workflow:** Tests are created AFTER Plan and BEFORE Build. This enables Ralph Loop to iterate until tests pass, preventing false success declarations.
 
 ## Commands
 
@@ -35,8 +37,8 @@
 | `/forge:research` | BMAD-style parallel research |
 | `/forge:design` | Stitch-powered UI generation |
 | `/forge:plan` | Surgical planning with TDD |
-| `/forge:build` | Subagent-driven development |
-| `/forge:test` | **Comprehensive test suite creation** |
+| `/forge:test` | **Create tests BEFORE building (test-first)** |
+| `/forge:build` | Execute with Ralph Loop or subagents |
 | `/forge:validate` | Evidence-based validation |
 | `/forge:review` | Parallel specialized review |
 | `/forge:learn` | Pattern capture & CLAUDE.md update |
@@ -50,13 +52,13 @@
 ## Quick Start
 
 ```bash
-# Full workflow
+# Full workflow (Test-First)
 /forge:brainstorm "add user profile feature"
 /forge:research          # Continue from brainstorm
 /forge:design            # Generate UI specs
 /forge:plan              # Create implementation plan
-/forge:build             # Execute plan
-/forge:test              # Run comprehensive tests
+/forge:test              # CREATE TESTS BEFORE BUILDING
+/forge:build             # Execute plan (Ralph Loop iterates until tests pass)
 /forge:validate          # Verify against requirements
 /forge:review            # Code review
 /forge:learn             # Capture patterns

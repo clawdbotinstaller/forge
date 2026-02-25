@@ -5,7 +5,7 @@ description: Use when executing implementation plans with subagent-driven develo
 
 # FORGE Build
 
-**Phase 5 of 9** - Execute implementation plan with subagent-driven development and TDD discipline.
+**Phase 6 of 9** - Execute implementation plan with tests already created. Use Ralph Loop to iterate until tests pass.
 
 ## Philosophy
 
@@ -151,13 +151,35 @@ digraph build_flow {
 
 **Consumes:**
 - `docs/forge/plan.md` (implementation tasks)
+- `docs/forge/test-plan.md` (tests created in Phase 5)
+- Pre-existing test suite (from `/forge:test`)
 
 **Produces:**
-- Working code
+- Working code that passes tests
 - `.claude/memory/forge/completed/*.md`
 
 **Hands off to:**
-- `/forge:test` - Run comprehensive tests
+- `/forge:validate` - Verify against requirements
+
+## Ralph Loop vs Subagent-Driven Build
+
+| Approach | When to Use |
+|----------|-------------|
+| **Ralph Loop** | 10+ steps, overnight tasks, clearly defined tests |
+| **Subagent-Driven** | < 10 tasks, interactive development, human checkpoints |
+
+**Ralph Loop with Tests:**
+```bash
+/forge:ralph "Implement feature" \
+  --plan docs/forge/plan.md \
+  --completion-promise "MINOR GATES: Unit tests pass" \
+  --final-gate "FULL GATES: E2E tests pass"
+```
+
+**Subagent-Driven:**
+```
+/forge:build (uses fresh subagent per task, two-stage review)
+```
 
 ## Artifact Levels
 

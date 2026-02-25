@@ -247,10 +247,12 @@ Before finalizing plan, verify:
 - `docs/forge/research.md` (patterns)
 
 **Produces:**
-- `docs/forge/plan.md` (implementation plan)
+- `docs/forge/plan.md` (implementation plan with test strategy)
 
 **Hands off to:**
-- `/forge:build` - Plan is executed task-by-task
+- `/forge:test` - Tests are created BEFORE building (test-first workflow)
+- Tests defined in plan guide test creation
+- `/forge:build` - Plan executed after tests exist
 
 ## Artifact Levels
 

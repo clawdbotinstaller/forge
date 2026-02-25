@@ -1,11 +1,11 @@
 ---
 name: forge-test
-description: Use when creating and running comprehensive test suites - WHOLE phase dedicated to testing because testing is critical for verifying actual success
+description: Use when creating comprehensive test suites AFTER Plan and BEFORE Build - test-first workflow
 ---
 
 # FORGE Test
 
-**Phase 6 of 9** - **WHOLE PHASE dedicated to comprehensive test suite creation and execution.** Testing is critical for verifying actual success.
+**Phase 5 of 9** (after Plan, before Build) - **Create tests BEFORE building.** This is test-first at the workflow level.
 
 ## Philosophy
 
@@ -14,37 +14,45 @@ description: Use when creating and running comprehensive test suites - WHOLE pha
 ## When to Use
 
 Use `/forge:test` when:
-- Build phase complete
-- Need comprehensive test coverage
-- Want automated verification
+- Plan phase complete (test strategy defined)
+- Ready to create tests BEFORE building
+- Want test-first workflow
+
+**Why before Build?**
+- Tests define "done" before coding starts
+- Ralph Loop iterates against these tests
+- Prevents false success declarations
+- Ensures test coverage from the start
 
 Skip when:
 - No tests in project
-- Manual testing preferred
+- Using `/forge:ralph` (tests created during iteration)
 
-## Testing Workflow
+## Test-First Workflow (Before Build)
 
 ```dot
 digraph test_flow {
-    "Build complete" [shape=doublecircle];
-    "Spawn test agents" [shape=box];
-    "Parallel testing" [shape=box];
-    "Collect results" [shape=box];
-    "All pass?" [shape=diamond];
-    "Document results" [shape=box];
-    "Handoff" [shape=doublecircle];
-    "Debug" [shape=box];
+    "Plan complete" [shape=doublecircle];
+    "Create test suite" [shape=box];
+    "Define test gates" [shape=box];
+    "Write failing tests" [shape=box];
+    "Tests ready?" [shape=diamond];
+    "Document test plan" [shape=box];
+    "Handoff to Build" [shape=doublecircle];
 
-    "Build complete" -> "Spawn test agents";
-    "Spawn test agents" -> "Parallel testing";
-    "Parallel testing" -> "Collect results";
-    "Collect results" -> "All pass?";
-    "All pass?" -> "Document results" [label="yes"];
-    "All pass?" -> "Debug" [label="no"];
-    "Debug" -> "Spawn test agents";
-    "Document results" -> "Handoff";
+    "Plan complete" -> "Create test suite";
+    "Create test suite" -> "Define test gates";
+    "Define test gates" -> "Write failing tests";
+    "Write failing tests" -> "Tests ready?";
+    "Tests ready?" -> "Document test plan" [label="yes"];
+    "Tests ready?" -> "Write failing tests" [label="refine"];
+    "Document test plan" -> "Handoff to Build";
 }
 ```
+
+**Test Gates for Ralph Loop:**
+- **Minor Gates:** Unit tests, type checks (run frequently)
+- **Full Gates:** Integration tests, E2E tests (run before commit)
 
 ## Parallel Testing Agents
 
@@ -222,15 +230,42 @@ build_ref: "[build session]"
 ## Integration
 
 **Consumes:**
-- Build phase output (code to test)
+- `docs/forge/plan.md` (test strategy defined in plan)
 
 **Produces:**
-- `docs/forge/test-results.md`
-- Pass/fail status per category
+- Test suite files (ready for build phase)
+- `docs/forge/test-plan.md` (test specifications)
+- Test gates (minor and full)
 
 **Hands off to:**
-- `/forge:validate` - Test results inform validation
-- `/forge:build` - If fixes needed
+- `/forge:build` or `/forge:ralph` - Tests exist, iterate until passing
+- Build uses Ralph Loop with tests as completion criteria
+
+## Ralph Loop Integration
+
+**How tests enable Ralph Loop:**
+
+```
+Plan → Test Creation → Ralph Loop (iterate until tests pass) → Validate
+         ↑                    ↓
+    Define test gates    Run minor gates frequently
+    Define full gates    Run full gates before commit
+```
+
+**Test Gates:**
+| Gate Type | Tests | When Run |
+|-----------|-------|----------|
+| **Minor Gates** | Unit tests, type checks | Every Ralph iteration |
+| **Full Gates** | Integration, E2E | Before final commit |
+
+**Example Ralph Command:**
+```bash
+/forge:ralph "Implement feature from plan" \
+  --plan docs/forge/plan.md \
+  --test-plan docs/forge/test-plan.md \
+  --completion-promise "MINOR GATES PASS: All unit tests green, TypeScript clean" \
+  --final-gate "FULL GATES PASS: Integration tests pass, E2E complete"
+```
 
 ## Artifact Levels
 
