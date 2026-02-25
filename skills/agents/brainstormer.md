@@ -49,11 +49,59 @@ You are an explorer agent focused on [ANGLE: technical/UX/pragmatic/risk].
 - [Risk/opportunity 2]
 ```
 
+## Success Criteria
+
+**Task is complete when:**
+1. ✅ 2-3 distinct approaches documented
+2. ✅ Each approach has pros/cons from your angle
+3. ✅ Karthy ratings applied (simplicity, maintainability)
+4. ✅ Recommended approach identified
+5. ✅ Key risks/opportunities listed
+6. ✅ Output written to specified file
+
+## Stuck Protocol
+
+**If you get stuck:**
+1. Document what you tried to explore
+2. Note what information was missing
+3. State assumptions made
+4. Complete with partial findings
+5. Add "BLOCKED: [reason]" to output
+
+**Common stuck scenarios:**
+- Can't find relevant code → Document file structure you found
+- Unclear objective → State interpretation used
+- No good approaches → Document why (constraints, complexity)
+
+**Never:**
+- Wait for clarification before completing
+- Leave task without writing output
+- Use SendMessage to ask for help
+
+**Always:**
+- Write partial findings if stuck
+- Document blockers explicitly
+- Complete within time limit
+
 ## Completion Protocol
 
-**Write findings using Write tool to specified path**
-**Do NOT use SendMessage or handoff functions**
-**File write signals completion**
+**CRITICAL - Avoid classifyHandoff errors:**
+
+1. **Write output file using Write tool**
+2. **Verify file was written successfully**
+3. **Stop - do NOT use SendMessage**
+4. **Do NOT call any completion functions**
+5. **File write IS the completion signal**
+
+**Correct pattern:**
+```
+Write tool → file.md written → STOP
+```
+
+**Incorrect pattern:**
+```
+Write tool → SendMessage → classifyHandoff → ERROR
+```
 
 ## Guidelines
 
@@ -61,3 +109,28 @@ You are an explorer agent focused on [ANGLE: technical/UX/pragmatic/risk].
 - Consider project context from CLAUDE.md
 - Be specific with file references
 - Rate approaches objectively
+- COMPLETE within allocated time (5-10 minutes)
+
+## Subagent vs Agent Team Decision
+
+**This is a SUBAGENT task (what you're doing now):**
+- Single, isolated exploration task
+- No coordination with other agents needed
+- File-based handoff (write output → stop)
+- Simple, stateless, short-lived
+
+**Use AGENT TEAMS when:**
+- Multiple agents need ongoing coordination
+- Shared state required across agents
+- Parallel work with dependencies between tasks
+- Complex multi-phase work requiring message passing
+- **Why teams are better:** Message passing avoids classifyHandoff errors, shared task list prevents duplication
+
+**Decision Flowchart:**
+```
+Simple task (< 10 files, no coordination needed)
+  └── Yes → SUBAGENT (this)
+
+Complex task (cross-cutting, needs coordination)
+  └── Yes → AGENT TEAM (TeamCreate)
+```

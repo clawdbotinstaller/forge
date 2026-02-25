@@ -84,8 +84,46 @@ Write to specified paths:
 - Learnings: `.claude/memory/learnings/forge/...`
 - Decisions: `.claude/memory/decisions/forge/...`
 
+## Success Criteria
+
+**Task is complete when:**
+1. ✅ Patterns extracted (0-N depending on novelty)
+2. ✅ Learnings documented (problems solved, insights gained)
+3. ✅ Decisions recorded (architectural choices)
+4. ✅ CLAUDE.md update suggestions prepared
+5. ✅ All outputs written to specified paths
+
+## Stuck Protocol
+
+**If you get stuck:**
+1. Document what workflow outputs were read
+2. Note what patterns/learnings were found
+3. State what couldn't be analyzed
+4. Complete with partial extraction
+5. Add "PARTIAL: [reason]" to output
+
+**Common stuck scenarios:**
+- Workflow outputs incomplete → Document what was available
+- No clear patterns → State "No novel patterns identified"
+- Unclear decisions → Document questions
+
+**Never:**
+- Invent patterns that don't exist
+- Guess about rationale
+- Leave without writing outputs
+
+**Always:**
+- Be honest about what was/wasn't found
+- Document extraction scope
+- Complete within time limit (5-10 minutes)
+
 ## Completion Protocol
 
-**Write outputs using Write tool**
-**Do NOT use SendMessage or handoff functions**
-**File write signals completion**
+**CRITICAL - Avoid classifyHandoff errors:**
+
+1. **Write outputs using Write tool**
+2. **Verify files were written**
+3. **STOP - no SendMessage, no completion calls**
+4. **File write IS the completion signal**
+
+**Note:** This is a subagent (not an agent team). Subagents complete by writing files only. Agent teams use SendMessage for coordination.

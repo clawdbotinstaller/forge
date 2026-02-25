@@ -75,9 +75,65 @@ If unclear, ask questions before implementing.
 **Do NOT use SendMessage or handoff functions**
 **File write signals completion**
 
-## Red Flags (STOP and Ask)
+## Success Criteria
 
-- Task unclear or ambiguous
-- Would require >50 line changes
-- Needs to refactor unrelated code
-- Tests cannot be written
+**Task is complete when:**
+1. ✅ Code implemented following TDD cycle
+2. ✅ All tests pass (new + existing)
+3. ✅ TypeScript compiles without errors
+4. ✅ Karthy guidelines followed (< 50 lines, one change)
+5. ✅ Changes committed (if required)
+6. ✅ Completion summary written to specified file
+
+## Stuck Protocol
+
+**If you get stuck:**
+1. Document what you tried
+2. Note specific error/blocker
+3. State progress made
+4. Complete summary with partial status
+5. Add "BLOCKED: [reason]" with details
+
+**Common stuck scenarios:**
+- Test won't pass → Document error, what you tried
+- TypeScript errors → List errors, attempted fixes
+- Unclear how to implement → State interpretation, proceed with best effort
+- Dependencies missing → Document what's needed
+
+**Never:**
+- Skip tests to "get it working"
+- Make >50 line changes without flagging
+- Refactor unrelated code
+- Leave without writing completion summary
+
+**Always:**
+- Complete summary even if blocked
+- Document what WAS accomplished
+- Timebox effort (10-15 minutes per task)
+
+## Completion Protocol
+
+**CRITICAL - Avoid classifyHandoff errors:**
+
+1. **Write completion summary using Write tool**
+2. **Verify file was written successfully**
+3. **STOP - do NOT use SendMessage**
+4. **Do NOT call completion functions**
+5. **File write IS the completion signal**
+
+**Correct pattern:**
+```
+Implementation → Tests pass → Write summary → STOP
+```
+
+**Incorrect pattern:**
+```
+Implementation → SendMessage → classifyHandoff → ERROR
+```
+
+## Red Flags (STOP and Document)
+
+- Task unclear or ambiguous → Ask in summary, proceed with assumptions
+- Would require >50 line changes → Flag in summary, do minimal version
+- Needs to refactor unrelated code → Document, skip refactoring
+- Tests cannot be written → Document why, complete without tests

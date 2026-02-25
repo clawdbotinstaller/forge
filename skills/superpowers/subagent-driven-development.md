@@ -11,6 +11,30 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
 
 ## When to Use
 
+### Subagent vs Agent Teams Decision
+
+| Factor | Use Subagents (This Skill) | Use Agent Teams (TeamCreate) |
+|--------|---------------------------|------------------------------|
+| **Coordination** | Independent tasks | Need ongoing coordination |
+| **Scope** | < 10 files | > 10 files, cross-cutting |
+| **Duration** | Minutes | Hours |
+| **Communication** | File-based completion | Message-based coordination |
+| **State** | Task output files | Shared team config |
+| **Complexity** | Simple to moderate | Complex, multi-phase |
+
+**Decision Flowchart:**
+```
+Complex task requiring multiple agents?
+├── Yes → Need ongoing coordination?
+│         ├── Yes → Agent Teams (TeamCreate)
+│         └── No  → Subagents (This skill)
+└── No  → Subagents (This skill) - simpler, faster
+```
+
+**Examples:**
+- **Subagent**: Implement one component, research one topic, fix one bug
+- **Agent Team**: Refactor entire codebase, build multi-page feature, architecture overhaul
+
 ```dot
 digraph when_to_use {
     "Have implementation plan?" [shape=diamond];
@@ -18,12 +42,13 @@ digraph when_to_use {
     "Stay in this session?" [shape=diamond];
     "subagent-driven-development" [shape=box];
     "executing-plans" [shape=box];
+    "Use Agent Teams" [shape=box];
     "Manual execution or brainstorm first" [shape=box];
 
     "Have implementation plan?" -> "Tasks mostly independent?" [label="yes"];
     "Have implementation plan?" -> "Manual execution or brainstorm first" [label="no"];
     "Tasks mostly independent?" -> "Stay in this session?" [label="yes"];
-    "Tasks mostly independent?" -> "Manual execution or brainstorm first" [label="no - tightly coupled"];
+    "Tasks mostly independent?" -> "Use Agent Teams" [label="no - tightly coupled, complex"];
     "Stay in this session?" -> "subagent-driven-development" [label="yes"];
     "Stay in this session?" -> "executing-plans" [label="no - parallel session"];
 }

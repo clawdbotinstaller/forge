@@ -121,15 +121,39 @@ status: approved
 
 **Verdict:** ✅ Approved (size increase justified)
 
+## Security Review (Critical for PRs)
+
+**Security Reviewer Agent checks:**
+
+| Category | Checks |
+|----------|--------|
+| **Secrets** | No API keys, tokens, passwords in code |
+| **Injection** | SQL, XSS, command injection prevention |
+| **Auth** | Proper authentication/authorization checks |
+| **Data Exposure** | No PII, sensitive data in logs/responses |
+| **Dependencies** | No vulnerable packages (if applicable) |
+| **CORS** | Correct CORS configuration |
+
+**Security Review Output:**
+```markdown
 ## Security Review
 
-| Check | Status |
-|-------|--------|
-| Auth validation | ✅ |
-| Input sanitization | N/A (no inputs) |
-| Secret exposure | ✅ None found |
+| Check | Status | Notes |
+|-------|--------|-------|
+| Secrets in code | ✅ PASS | No hardcoded credentials |
+| Input validation | ✅ PASS | All inputs sanitized |
+| Auth checks | ✅ PASS | Protected routes verified |
+| Data exposure | ✅ PASS | No sensitive data leaked |
+| Injection risks | ✅ PASS | Prepared statements used |
 
-**Verdict:** ✅ Approved
+**Verdict:** ✅ Approved for merge
+```
+
+**If security issues found:**
+- BLOCK merge until resolved
+- Document in review.md
+- Assign fix to builder agent
+- Re-review after fix
 
 ## Overall
 

@@ -108,6 +108,55 @@ Smart orchestrator for the FORGE 9-phase development workflow. Detects current p
 - Gates disabled: Skips validate
 - Karthy disabled: No surgical precision checks
 
+## Ralph Loop Integration
+
+**When to use Ralph Loop vs FORGE phases:**
+
+| Scenario | Use |
+|----------|-----|
+| Plan has 10+ steps, clearly defined | `/ralph-loop` with plan |
+| Success criteria clear, tests defined | `/ralph-loop` |
+| Overnight/long-running tasks | `/ralph-loop` with max-iterations |
+| Design decisions needed | `/forge:brainstorm` |
+| Unclear requirements | `/forge:brainstorm` |
+| Multi-file complex refactoring | `/forge:build` with agent teams |
+
+**Ralph Loop prevents false success:**
+- Iterates until completion promise detected
+- Each iteration sees previous work
+- No premature "I'm done" declarations
+
+**Example:**
+```bash
+/ralph-loop "Implement all steps from docs/forge/plan.md. Output <promise>COMPLETE</promise> when all tests pass." --max-iterations 50 --completion-promise "COMPLETE"
+```
+
+## Subagent vs Agent Teams Decision
+
+**Use Subagents (Task tool) when:**
+- Single independent task
+- < 10 files involved
+- No need for coordination between agents
+- Short-lived (minutes, not hours)
+- Example: Research one topic, implement one component
+
+**Use Agent Teams (TeamCreate) when:**
+- Multiple agents need to work together
+- Complex cross-cutting changes
+- > 10 files involved
+- Need persistent shared state
+- Long-running (hours)
+- Example: Major feature, architecture refactoring
+
+**Decision Flowchart:**
+```
+Complex task?
+├── Yes → Multiple agents needed?
+│         ├── Yes → Agent Teams (TeamCreate)
+│         └── No  → Subagent (Task)
+└── No  → Subagent (Task) - simpler, faster
+```
+
 ## Workflow Visualization
 
 ```
@@ -120,6 +169,9 @@ Smart orchestrator for the FORGE 9-phase development workflow. Detects current p
 │  Learn   │ <- │  Review  │ <- │ Validate │ <- │  Build   │
 │   ✅     │    │          │    │          │    │          │
 └──────────┘    └──────────┘    └──────────┘    └──────────┘
+      ^                                              |
+      |                                              |
+   Ralph Loop (optional for large plans) -------------
 ```
 
 ## Integration
