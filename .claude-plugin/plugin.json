@@ -1,0 +1,138 @@
+{
+  "name": "forge",
+  "version": "0.1.0",
+  "description": "FORGE - Comprehensive 9-phase development workflow: Brainstorm → Research → Design → Plan → Build → Test → Validate → Review → Learn. Includes Karpathy-guided debate, dynamic skill loading, and continuous learning.",
+  "author": {
+    "name": "Muadh Sambul",
+    "email": "user@example.com"
+  },
+  "keywords": [
+    "workflow",
+    "development",
+    "planning",
+    "execution",
+    "karpathy-guidelines",
+    "multi-agent",
+    "continuous-learning"
+  ],
+  "components": {
+    "skills": 19,
+    "commands": 11,
+    "agents": 9
+  },
+  "skills": {
+    "core": [
+      {
+        "name": "forge-config",
+        "description": "User configuration for artifact levels and quality gates"
+      },
+      {
+        "name": "forge-context",
+        "description": "Progressive context loading across phases"
+      },
+      {
+        "name": "forge-memory",
+        "description": "Memory integration for pattern capture"
+      }
+    ],
+    "workflows": [
+      {
+        "name": "forge-brainstorm",
+        "description": "Multi-agent idea exploration with debate"
+      },
+      {
+        "name": "forge-research",
+        "description": "BMAD-style parallel research subagents"
+      },
+      {
+        "name": "forge-design",
+        "description": "UI/UX generation with Stitch integration"
+      },
+      {
+        "name": "forge-plan",
+        "description": "Surgical implementation planning with TDD"
+      },
+      {
+        "name": "forge-build",
+        "description": "Subagent-driven development execution"
+      },
+      {
+        "name": "forge-test",
+        "description": "Automated testing with parallel agents"
+      },
+      {
+        "name": "forge-validate",
+        "description": "Quality gates with evidence-based validation"
+      },
+      {
+        "name": "forge-review",
+        "description": "Comprehensive code review with specialized agents"
+      },
+      {
+        "name": "forge-learn",
+        "description": "Continuous learning and pattern capture"
+      },
+      {
+        "name": "forge-help",
+        "description": "Smart orchestrator for workflow guidance"
+      }
+    ],
+    "agents": [
+      {
+        "name": "brainstormer",
+        "description": "Explores multiple approaches from different angles"
+      },
+      {
+        "name": "researcher",
+        "description": "Parallel research with best practices discovery"
+      },
+      {
+        "name": "designer",
+        "description": "UI/UX generation with design system compliance"
+      },
+      {
+        "name": "planner",
+        "description": "Creates surgical implementation plans"
+      },
+      {
+        "name": "builder",
+        "description": "Executes tasks with TDD discipline"
+      },
+      {
+        "name": "tester",
+        "description": "Comprehensive test strategy execution"
+      },
+      {
+        "name": "validator",
+        "description": "Evidence-based quality validation"
+      },
+      {
+        "name": "reviewer",
+        "description": "Multi-angle code review specialist"
+      },
+      {
+        "name": "archivist",
+        "description": "Pattern extraction and knowledge capture"
+      }
+    ]
+  },
+  "commands": [
+    "forge:brainstorm",
+    "forge:research",
+    "forge:design",
+    "forge:plan",
+    "forge:build",
+    "forge:test",
+    "forge:validate",
+    "forge:review",
+    "forge:learn",
+    "forge:help",
+    "forge:quick"
+  ],
+  "config": {
+    "artifact_levels": ["minimal", "intelligent", "maximal"],
+    "quality_gates": "configurable",
+    "karpathy_enforced": true,
+    "auto_skill_loading": true
+  }
+}
