@@ -18,6 +18,10 @@
           {
             "type": "command",
             "command": "hooks/PreToolUse/block-env-edits.sh"
+          },
+          {
+            "type": "command",
+            "command": "hooks/PreToolUse/block-lockfile-edits.sh"
           }
         ]
       }
@@ -30,6 +34,10 @@
           {
             "type": "command",
             "command": "hooks/PostToolUse/type-check.sh"
+          },
+          {
+            "type": "command",
+            "command": "hooks/PostToolUse/lint-check.sh"
           }
         ]
       }

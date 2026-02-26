@@ -144,6 +144,24 @@
       "tools": ["Read", "Glob", "Grep"],
       "triggers": ["race condition", "async bug", "frontend timing"]
     },
+    "test-architect": {
+      "name": "Test Architect",
+      "description": "Risk-based testing specialist for comprehensive QA",
+      "model": "opus",
+      "color": "orange",
+      "tools": ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "MCP"],
+      "triggers": ["test", "QA", "risk", "coverage", "ATDD", "acceptance", "ci/cd", "pipeline", "quality audit"],
+      "skills": ["risk-based-testing", "atdd-workflow", "test-automation", "test-review", "ci-cd-setup"]
+    },
+    "ci-specialist": {
+      "name": "CI Specialist",
+      "description": "CI/CD pipeline expert for test automation and quality gates",
+      "model": "opus",
+      "color": "cyan",
+      "tools": ["Read", "Glob", "Grep", "Edit", "Write", "Bash"],
+      "triggers": ["ci/cd", "pipeline", "github actions", "gitlab ci", "jenkins", "azure devops", "quality gate", "test automation", "deployment"],
+      "skills": ["ci-cd-setup", "test-automation"]
+    },
     "arkived-orchestrator": {
       "name": "Arkived Orchestrator",
       "description": "Legacy compound engineering orchestrator",
