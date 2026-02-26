@@ -1,6 +1,8 @@
 ---
 name: forge:start
 description: Start the full FORGE 9-phase workflow - detects workspace state and guides through complete development process
+argument-hint: "[feature description]"
+disable-model-invocation: true
 ---
 
 # /forge:start
@@ -35,6 +37,9 @@ description: Start the full FORGE 9-phase workflow - detects workspace state and
 
 # Start with options
 /forge:start "API integration" --level=intelligent --karthy-strict
+
+# Sequential mode (no swarm)
+/forge:start "Feature name" --sequential
 ```
 
 ## Full 9-Phase Flow
@@ -55,6 +60,66 @@ description: Start the full FORGE 9-phase workflow - detects workspace state and
                                                     │   (First)   │
                                                     └─────────────┘
 ```
+
+## Execution Modes
+
+### Swarm Mode (Default)
+
+Uses parallel agent execution for maximum efficiency:
+
+```
+Sequential Phase:
+1. /ralph-wiggum:ralph-loop "finish all slash commands" --completion-promise "DONE"
+2. /forge:brainstorm $ARGUMENTS (skip if user already knows what they want)
+3. /forge:research $ARGUMENTS
+4. /forge:design $ARGUMENTS
+5. /forge:plan $ARGUMENTS
+
+Swarm Phase (Parallel):
+6. /forge:test - spawn as background Task agent
+7. /forge:build --swarm - spawn Ralph Loop with subagents
+
+Wait for both to complete.
+
+Finalize Phase:
+8. /forge:validate
+9. /forge:review - spawn as background Task agent
+10. /forge:resolve-todos
+11. /forge:learn
+12. Output <promise>DONE</promise> when complete
+```
+
+### Sequential Mode (--sequential)
+
+Run all phases sequentially without parallelization:
+
+```
+1. /ralph-wiggum:ralph-loop "finish all slash commands" --completion-promise "DONE"
+2. /forge:brainstorm $ARGUMENTS (if needed)
+3. /forge:research $ARGUMENTS
+4. /forge:design $ARGUMENTS
+5. /forge:plan $ARGUMENTS
+6. /forge:test
+7. /forge:build
+8. /forge:validate
+9. /forge:review
+10. /forge:resolve-todos
+11. /forge:learn
+12. Output <promise>DONE</promise>
+```
+
+## Ralph Loop Integration
+
+The workflow uses Ralph Loop for completion tracking:
+
+```bash
+/ralph-wiggum:ralph-loop "finish all slash commands" --completion-promise "DONE"
+```
+
+This ensures:
+- All phases complete before promise fulfillment
+- No premature exit
+- Clear completion signal
 
 ## Interactive Guidance
 
@@ -118,6 +183,7 @@ Continue with remaining tasks?
 | `--karthy-strict` | - | Enforce strict Karthy guidelines |
 | `--security` | on, off | Enable security checks |
 | `--ralph` | - | Use Ralph Loop for build phase |
+| `--sequential` | - | Disable swarm mode, run sequentially |
 
 ## Phase Transitions
 

@@ -54,10 +54,10 @@ digraph brainstorm_flow {
 
 | Agent | Angle | Explores |
 |-------|-------|----------|
-| `explorer-1` | Technical | Feasibility, architecture, performance |
-| `explorer-2` | UX | User experience, accessibility, flow |
-| `explorer-3` | Pragmatic | Simplicity, speed, maintainability |
-| `explorer-4` | Risk | Edge cases, failure modes, security |
+| `brainstormer` | Technical | Feasibility, architecture, performance |
+| `researcher` | UX/Context | User experience, existing patterns |
+| `pattern-recognition-specialist` | Patterns | Code patterns, anti-patterns in codebase |
+| `best-practices-researcher` | External | Industry best practices, similar implementations |
 
 **Each agent:**
 1. Reads relevant codebase context
@@ -65,6 +65,24 @@ digraph brainstorm_flow {
 3. Documents 2-3 approaches with pros/cons
 4. **Writes to `.claude/memory/forge/brainstorm/{agent}.md`**
 5. **Stops - file write is completion signal**
+
+**Agent Invocation (using compound-engineering agents):**
+
+```javascript
+// Pattern recognition specialist - analyze codebase patterns
+Task({
+  subagent_type: "compound-engineering:research:pattern-recognition-specialist",
+  description: "Analyze codebase for relevant patterns",
+  prompt: "Analyze the codebase for design patterns, naming conventions, and architectural approaches relevant to: [objective]. Write findings to .claude/memory/forge/brainstorm/patterns.md"
+})
+
+// Best practices researcher - external research
+Task({
+  subagent_type: "compound-engineering:research:best-practices-researcher",
+  description: "Research best practices for this feature type",
+  prompt: "Research current best practices for implementing [objective]. Focus on: implementation patterns, common pitfalls, performance considerations. Write findings to .claude/memory/forge/brainstorm/best-practices.md"
+})
+```
 
 **Completion Protocol:**
 - Write findings using Write tool

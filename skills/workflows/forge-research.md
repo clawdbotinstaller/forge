@@ -45,12 +45,46 @@ digraph research_flow {
 
 ## Research Agents (Parallel)
 
-| Agent | Focus | Investigates |
-|-------|-------|--------------|
-| `pattern-researcher` | Code patterns | Similar implementations in codebase |
-| `best-practices-researcher` | Industry standards | Best practices for chosen approach |
-| `ecosystem-researcher` | Library/tools | Relevant libraries, tools, examples |
-| `risk-researcher` | Pitfalls | Known issues, anti-patterns, gotchas |
+**Using compound-engineering research agents:**
+
+| Agent | Subagent Type | Focus | Investigates |
+|-------|---------------|-------|--------------|
+| `repo-researcher` | `repo-research-analyst` | Code patterns | Similar implementations in codebase |
+| `best-practices-researcher` | `best-practices-researcher` | Industry standards | Best practices for chosen approach |
+| `framework-researcher` | `framework-docs-researcher` | Documentation | Framework docs, API references |
+| `git-history-researcher` | `git-history-analyzer` | Evolution | Code archaeology, past decisions |
+
+**Agent Invocation:**
+
+```javascript
+// Repository pattern analysis
+Task({
+  subagent_type: "compound-engineering:research:repo-research-analyst",
+  description: "Analyze codebase patterns",
+  prompt: "Analyze the codebase for patterns relevant to: [selected approach]. Find similar implementations, established conventions, and architectural patterns. Write findings to .claude/memory/forge/research/repo-patterns.md"
+})
+
+// Best practices research
+Task({
+  subagent_type: "compound-engineering:research:best-practices-researcher",
+  description: "Research industry best practices",
+  prompt: "Research current best practices for: [selected approach]. Include implementation patterns, common pitfalls, performance considerations, and community standards. Write findings to .claude/memory/forge/research/best-practices.md"
+})
+
+// Framework documentation
+Task({
+  subagent_type: "compound-engineering:research:framework-docs-researcher",
+  description: "Gather framework documentation",
+  prompt: "Gather comprehensive documentation about the frameworks/libraries relevant to: [selected approach]. Include official docs, key APIs, and version-specific notes. Write findings to .claude/memory/forge/research/framework-docs.md"
+})
+
+// Git history analysis
+Task({
+  subagent_type: "compound-engineering:research:git-history-analyzer",
+  description: "Analyze code evolution",
+  prompt: "Analyze git history for files/components related to: [selected approach]. Understand past decisions, refactoring patterns, and evolution. Write findings to .claude/memory/forge/research/git-history.md"
+})
+```
 
 ## Research Protocol
 

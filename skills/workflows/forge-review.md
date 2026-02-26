@@ -48,12 +48,54 @@ digraph review_flow {
 
 ## Parallel Reviewers
 
-| Reviewer | Focus | Checks |
-|----------|-------|--------|
-| `karpathy-reviewer` | Surgical precision | Lines < 50, one change, no scope creep |
-| `design-reviewer` | UI/UX | Design system compliance, animations |
-| `performance-reviewer` | Speed | Bundle size, render perf, queries |
-| `security-reviewer` | Security | Auth, injection, exposure |
+**Using compound-engineering agents:**
+
+| Reviewer | Agent | Focus | Checks |
+|----------|-------|-------|--------|
+| `karpathy-reviewer` | `code-simplicity-reviewer` | Surgical precision | Lines < 50, one change, no scope creep |
+| `performance-reviewer` | `performance-oracle` | Speed | Bundle size, render perf, queries |
+| `security-reviewer` | `security-sentinel` | Security | Auth, injection, exposure |
+| `architecture-reviewer` | `architecture-strategist` | Architecture | SOLID, patterns, boundaries |
+| `pattern-reviewer` | `pattern-recognition-specialist` | Consistency | Patterns, anti-patterns |
+
+**Agent Invocation:**
+
+```javascript
+// Security review (critical for all PRs)
+Task({
+  subagent_type: "compound-engineering:review:security-sentinel",
+  description: "Security audit",
+  prompt: "Perform comprehensive security audit on the changes. Check for: secrets in code, injection vulnerabilities, auth issues, data exposure. Write findings to .claude/memory/forge/review/security.md"
+})
+
+// Performance review
+Task({
+  subagent_type: "compound-engineering:review:performance-oracle",
+  description: "Performance analysis",
+  prompt: "Analyze code for performance bottlenecks, N+1 queries, memory leaks, bundle size impact. Write findings to .claude/memory/forge/review/performance.md"
+})
+
+// Architecture review
+Task({
+  subagent_type: "compound-engineering:review:architecture-strategist",
+  description: "Architecture compliance",
+  prompt: "Review code for architectural compliance: SOLID principles, separation of concerns, design patterns. Write findings to .claude/memory/forge/review/architecture.md"
+})
+
+// Code simplicity (Karpathy guidelines)
+Task({
+  subagent_type: "compound-engineering:review:code-simplicity-reviewer",
+  description: "Simplicity and YAGNI check",
+  prompt: "Review code for YAGNI violations, unnecessary complexity, over-engineering. Ensure Karpathy guidelines followed. Write findings to .claude/memory/forge/review/simplicity.md"
+})
+
+// Pattern analysis
+Task({
+  subagent_type: "compound-engineering:research:pattern-recognition-specialist",
+  description: "Pattern and anti-pattern detection",
+  prompt: "Analyze code for design patterns and anti-patterns. Check naming conventions, duplication, consistency with codebase. Write findings to .claude/memory/forge/review/patterns.md"
+})
+```
 
 ## Karpathy Reviewer (Critical)
 
