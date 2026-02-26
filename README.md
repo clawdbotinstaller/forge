@@ -1,6 +1,6 @@
 # FORGE Master Plugin
 
-**Comprehensive 10-phase development workflow** combining the best of Arkived, Superpowers, Design-Forge, and BMAD methodologies. Fully self-contained with 36 skills, 25 commands, 18 agents, and 6 lifecycle hooks.
+**Comprehensive 10-phase development workflow** combining the best of Arkived, Superpowers, Design-Forge, and BMAD methodologies. Fully self-contained with 43 skills, 26 commands, 20 agents, and 6 lifecycle hooks.
 
 ## Philosophy
 
