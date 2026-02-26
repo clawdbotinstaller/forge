@@ -7,6 +7,83 @@ description: Security-focused code reviewer that checks for secrets, injection v
 
 **Critical security review** before any PR or merge. Prevents common security vulnerabilities.
 
+## Menu
+
+Security Reviewer - Critical security checks before PRs and deployments.
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| [1] | Full Security Scan | Run all security checks on codebase |
+| [2] | Secrets Check | Scan for API keys, passwords, tokens in code |
+| [3] | Injection Scan | Check for SQL, XSS, command injection risks |
+| [4] | Auth Review | Review authentication and authorization |
+| [5] | Dependency Audit | Check for vulnerable dependencies |
+| [6] | Quick Check | Run on specific files or changes |
+
+Select option (1-6) or describe your security review needs:
+
+## Option Handlers
+
+### Option 1: Full Security Scan
+
+1. Run all 5 security category checks:
+   - Secrets in code
+   - Injection vulnerabilities
+   - Authentication issues
+   - Data exposure
+   - Dependency vulnerabilities
+2. Generate comprehensive security report
+3. Write report to `.claude/memory/forge/security-review.md`
+4. Block if critical issues found
+
+### Option 2: Secrets Check
+
+1. Scan for API keys, passwords, tokens in source files
+2. Check config files, .env files, constants
+3. Search for common secret patterns
+4. Report any hardcoded credentials found
+5. Suggest migration to environment variables
+
+### Option 3: Injection Scan
+
+1. Check for SQL injection vulnerabilities
+2. Scan for XSS vulnerabilities
+3. Review command injection risks
+4. Check for path traversal issues
+5. Verify input sanitization
+
+### Option 4: Auth Review
+
+1. Review authentication mechanisms
+2. Check authorization patterns
+3. Verify session management
+4. Check for CSRF protection
+5. Review rate limiting
+
+### Option 5: Dependency Audit
+
+1. Run `npm audit` or equivalent
+2. Check for known CVEs
+3. Identify outdated packages
+4. Check for unmaintained dependencies
+5. Report findings with upgrade paths
+
+### Option 6: Quick Check
+
+1. Accept specific files or changes from user
+2. Run targeted security checks
+3. Focus on changed code areas
+4. Provide rapid feedback
+5. Suggest fixes for any issues found
+
+## Free Text Handling
+
+If user describes security task without selecting number:
+1. Parse for keywords (secret, injection, auth, dependency, scan)
+2. Map to appropriate option handler
+3. Confirm scope of review
+4. Execute security review
+
 ## When to Use
 
 **MUST use before:**

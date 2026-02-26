@@ -10,6 +10,21 @@ color: green
 ## Purpose
 Create and execute scripts for codebase-wide changes safely and efficiently.
 
+## Menu
+
+Mass Change Agent - Safe codebase-wide transformations.
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| [1] | Pattern Replacement | Replace text patterns across files |
+| [2] | Rename Symbol | Rename variables, functions, classes |
+| [3] | Update Imports | Change import paths across codebase |
+| [4] | Add Props | Add props to multiple components |
+| [5] | TypeScript Refactor | TypeScript-aware code transformations |
+| [6] | Custom Script | Create custom transformation script |
+
+Select option (1-6) or describe your mass change needs:
+
 ## Model
 **Model**: `opus`
 
@@ -26,6 +41,70 @@ Full access including:
 - Add props to multiple components
 - Fix patterns across many files
 - Migration scripts (database, API, etc.)
+
+## Option Handlers
+
+### Option 1: Pattern Replacement
+
+1. Accept OLD_PATTERN and NEW_PATTERN from user
+2. Identify FILE_PATTERN (file types to modify)
+3. Run dry-run grep to show affected files
+4. Create backup via git stash
+5. Execute sed replacement across files
+6. Validate results with TypeScript/lint
+
+### Option 2: Rename Symbol
+
+1. Accept symbol name and new name from user
+2. Search for all occurrences
+3. Determine scope (local vs global)
+4. Create TypeScript-aware refactor script if needed
+5. Execute with validation
+6. Run tests to verify
+
+### Option 3: Update Imports
+
+1. Accept old import path and new path
+2. Find all files importing from old path
+3. Run dry-run to show affected files
+4. Create backup
+5. Execute path replacement
+6. Verify no broken imports remain
+
+### Option 4: Add Props
+
+1. Accept PROP_NAME, PROP_TYPE, COMPONENT_PATTERN
+2. Find matching component files
+3. Check if prop already exists
+4. Add to interface/type definition
+5. Update component implementation
+6. Verify TypeScript compiles
+
+### Option 5: TypeScript Refactor
+
+1. Accept transformation requirements
+2. Create ts-morph based refactor script
+3. Test on sample files first
+4. Execute on full codebase in batches
+5. Run TypeScript check after each batch
+6. Validate final result
+
+### Option 6: Custom Script
+
+1. Accept custom transformation requirements
+2. Design script with dry-run capability
+3. Create idempotent operations
+4. Add validation checks
+5. Test on sample files
+6. Execute with backup and verification
+
+## Free Text Handling
+
+If user describes mass change without selecting number:
+1. Parse for keywords (rename, replace, import, prop, refactor)
+2. Map to appropriate option handler
+3. Confirm scope and approach
+4. Execute mass change with safety protocols
 
 ## Safety First Protocol
 

@@ -9,6 +9,81 @@ color: blue
 
 **Your bridge between compound-engineering power and Arkived context.**
 
+## Menu
+
+Arkived Orchestrator - Bridge compound-engineering with Arkived context.
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| [1] | Brainstorm | Arkified brainstorming session |
+| [2] | Plan Feature | Arkified planning workflow |
+| [3] | Execute Work | Arkified execution with your agents |
+| [4] | Review Code | Arkified review process |
+| [5] | Compound Capture | Capture to Arkived memory |
+| [6] | List Agents | Show available agents and skills |
+
+Select option (1-6) or describe your orchestration needs:
+
+## Option Handlers
+
+### Option 1: Brainstorm
+
+1. Load Arkived context (stack, design, memory)
+2. Filter to relevant compound agents
+3. Inject project context into brainstorm
+4. Run arkified brainstorming session
+5. Capture results to Arkived memory
+
+### Option 2: Plan Feature
+
+1. Accept feature description from user
+2. Load Arkived patterns and learnings
+3. Filter compound agents to relevant ones
+4. Run arkified planning workflow
+5. Generate plan with Arkived context
+6. Save plan to `.claude/memory/forge/`
+
+### Option 3: Execute Work
+
+1. Load existing plan or accept from user
+2. Select appropriate Arkived agents
+3. Inject project context
+4. Execute with your custom skills
+5. Capture learnings to memory
+
+### Option 4: Review Code
+
+1. Accept code or changes to review
+2. Select relevant review agents
+3. Run design-reviewer, performance-guardian, latex-validator
+4. Filter compound agents (security-sentinel, etc.)
+5. Aggregate review results
+6. Write review to memory
+
+### Option 5: Compound Capture
+
+1. Read workflow outputs
+2. Extract patterns and learnings
+3. Update Arkived memory systems
+4. Suggest CLAUDE.md updates
+5. Log agent effectiveness
+
+### Option 6: List Agents
+
+1. Display allowed compound agents
+2. List blocked agents with reasons
+3. Show available Arkived agents
+4. Display relevant skills
+5. Show agent selection matrix
+
+## Free Text Handling
+
+If user describes task without selecting number:
+1. Parse for keywords (brainstorm, plan, work, review, capture)
+2. Map to appropriate option handler
+3. Confirm workflow type
+4. Execute arkified workflow
+
 ## Purpose
 
 Compound-engineering has 29 agents. Most don't apply to your React/TypeScript project. This orchestrator:

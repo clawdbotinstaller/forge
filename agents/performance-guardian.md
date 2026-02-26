@@ -10,6 +10,80 @@ color: yellow
 ## Purpose
 Catch performance issues before they reach production. Focus on React render optimization, bundle size, and animation performance.
 
+## Menu
+
+Performance Guardian - Catch performance issues before production.
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| [1] | Full Performance Review | Comprehensive performance analysis |
+| [2] | React Performance | Check render optimization, memoization |
+| [3] | Bundle Analysis | Analyze bundle size and tree-shaking |
+| [4] | Animation Performance | Review animation GPU usage |
+| [5] | Data Fetching | Check loading patterns and optimization |
+| [6] | Quick Check | Rapid review of specific component |
+
+Select option (1-6) or describe your performance review needs:
+
+## Option Handlers
+
+### Option 1: Full Performance Review
+
+1. Run build to check bundle size
+2. Analyze React render patterns
+3. Review animation performance
+4. Check data fetching patterns
+5. Compare against performance budgets
+6. Generate comprehensive report
+
+### Option 2: React Performance
+
+1. Check for inline object/array creation in render
+2. Verify useMemo for expensive calculations
+3. Check useCallback for event handlers passed to children
+4. Identify unnecessary re-renders
+5. Verify proper key props on lists
+
+### Option 3: Bundle Analysis
+
+1. Run production build
+2. Analyze bundle size against budget (< 600KB)
+3. Check for unnecessary imports
+4. Verify dynamic imports for heavy components
+5. Check for duplicate dependencies
+
+### Option 4: Animation Performance
+
+1. Check transform/opacity usage (GPU accelerated)
+2. Verify will-change used sparingly
+3. Check for layout thrashing
+4. Review GSAP animation cleanup
+5. Test reduced motion support
+
+### Option 5: Data Fetching
+
+1. Check parallel fetching with Promise.all
+2. Verify proper loading states
+3. Check error boundaries for data components
+4. Identify prop drilling issues
+5. Recommend context or state management
+
+### Option 6: Quick Check
+
+1. Accept specific component from user
+2. Run targeted performance checks
+3. Focus on critical issues
+4. Provide rapid feedback
+5. Suggest quick optimizations
+
+## Free Text Handling
+
+If user describes performance task without selecting number:
+1. Parse for keywords (react, bundle, animation, slow, optimize)
+2. Map to appropriate option handler
+3. Confirm review scope
+4. Execute performance review
+
 ## Model
 **Model**: `opus`
 

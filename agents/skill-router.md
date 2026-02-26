@@ -10,6 +10,70 @@ color: blue
 ## Purpose
 Force Claude to think first and route to appropriate skills/plugins before acting. Prevents ignoring available tools.
 
+## Menu
+
+🔀 Skill Router
+
+Route tasks to the most appropriate skills and workflows.
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| [1] | Route Current Task | Analyze and route this task to best skill |
+| [2] | List All Skills | Show all available skills and their uses |
+| [3] | Skill Help | Explain how to use a specific skill |
+| [4] | Check Memory | Review learned patterns and past decisions |
+| [5] | Bypass Routing | Force specific skill (not recommended) |
+
+Select option (1-5) or describe your task:
+
+## Option Handlers
+
+### Option 1: Route Current Task
+
+1. Analyze the current task/request
+2. Check pre-flight checklist (memory, Context7, coordination)
+3. Match to appropriate skill using routing logic
+4. Announce routing decision
+5. Execute through selected skill
+
+### Option 2: List All Skills
+
+Enumerate all available skills with brief descriptions:
+- Core framework skills
+- Workflow skills
+- Quality/testing skills
+- Design skills
+- Superpowers skills
+
+### Option 3: Skill Help
+
+Ask user which skill they want to learn about, then explain:
+- What the skill does
+- When to use it
+- How to invoke it
+- Key capabilities
+
+### Option 4: Check Memory
+
+Read and summarize:
+- `.claude/memory/patterns/` - Reusable patterns
+- `.claude/memory/learnings/` - Past insights
+- `.claude/memory/decisions/` - Architecture decisions
+- `.claude/memory/last_session_context.md` - Previous session
+
+### Option 5: Bypass Routing
+
+Ask which skill to force, confirm understanding, then execute.
+Warn that bypassing may miss optimizations.
+
+## Free Text Handling
+
+If user describes task without selecting number:
+1. Parse for keywords indicating task type
+2. Map to appropriate skill
+3. Confirm routing choice
+4. Execute
+
 ## Model
 **Model**: `opus`
 

@@ -10,6 +10,21 @@ color: cyan
 ## Purpose
 Detect and fix documentation drift. Ensures docs stay in sync with code changes.
 
+## Menu
+
+Documentation Maintainer - Keep docs in sync with code.
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| [1] | Full Doc Sync | Comprehensive documentation update |
+| [2] | Git Diff Analysis | Find changed files needing doc updates |
+| [3] | Quick Sync | Auto-update for minor changes |
+| [4] | Major Rewrite | Manual rewrite for significant refactors |
+| [5] | Doc Cleanup | Archive orphaned docs, create stubs |
+| [6] | Check Couplings | Verify code-doc relationships |
+
+Select option (1-6) or describe your documentation task:
+
 ## Model
 **Model**: `opus`
 
@@ -18,6 +33,65 @@ Detect and fix documentation drift. Ensures docs stay in sync with code changes.
 - After significant feature changes
 - When `/workflows:compound` captures knowledge
 - Manual trigger: "update docs"
+
+## Option Handlers
+
+### Option 1: Full Doc Sync
+
+1. Run git diff analysis for changed files
+2. Check code-doc couplings
+3. Identify orphaned and undocumented code
+4. Execute appropriate sync workflows
+5. Generate comprehensive sync report
+6. Update coupling tracking files
+
+### Option 2: Git Diff Analysis
+
+1. Find files changed since last doc update
+2. Compare against doc modification times
+3. Identify code files with outdated docs
+4. Flag docs needing attention
+5. Present findings with priority
+
+### Option 3: Quick Sync
+
+1. Identify minor changes (props renamed, minor logic)
+2. Read code file and corresponding doc
+3. Apply surgical updates
+4. Log changes made
+5. Update last-sync timestamp
+
+### Option 4: Major Rewrite
+
+1. Analyze new implementation for significant refactors
+2. Identify doc sections needing rewrite
+3. Draft new documentation
+4. Request human review
+5. Merge after approval
+
+### Option 5: Doc Cleanup
+
+1. Find orphaned docs (no matching code)
+2. Find undocumented code (no matching doc)
+3. Archive or delete obsolete docs
+4. Create stubs for new features
+5. Generate cleanup report
+
+### Option 6: Check Couplings
+
+1. Read `.claude/memory/docs/couplings.json`
+2. Verify each code-doc relationship
+3. Identify stale or broken couplings
+4. Update coupling metadata
+5. Recommend new couplings if needed
+
+## Free Text Handling
+
+If user describes doc task without selecting number:
+1. Parse for keywords (sync, update, cleanup, check, rewrite)
+2. Map to appropriate option handler
+3. Confirm documentation scope
+4. Execute documentation maintenance
 
 ## Detection Strategy
 
