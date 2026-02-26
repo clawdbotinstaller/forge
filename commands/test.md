@@ -306,6 +306,156 @@ Failures:
 ═══════════════════════════════════════════════════
 ```
 
+## New Test Subcommands (BMAD TEA Integration)
+
+### Risk-Based Testing
+
+```bash
+/forge:test risk
+```
+
+Calculate risk scores and prioritize testing effort.
+
+**Process:**
+1. Identify all features/requirements
+2. Assess probability (P1-P5) of defects
+3. Assess impact (I1-I5) of failure
+4. Calculate risk: P × I
+5. Prioritize testing by risk score
+
+**Output:**
+```
+Risk Assessment Report:
+┌─────────────────────┬───┬───┬──────┬──────────┐
+│ Feature             │ P │ I │ Risk │ Priority │
+├─────────────────────┼───┼───┼──────┼──────────┤
+│ Payment Processing  │ 4 │ 5 │ 20   │ 🔴 P1    │
+│ User Auth           │ 4 │ 4 │ 16   │ 🟠 P2    │
+│ Profile Management  │ 2 │ 2 │ 4    │ 🟢 P10   │
+└─────────────────────┴───┴───┴──────┴──────────┘
+
+Recommendation: Focus 50% of testing effort on Critical/High risk items.
+```
+
+**Required:** `@test-architect` agent
+
+---
+
+### ATDD (Acceptance Test-Driven Development)
+
+```bash
+/forge:test atdd [feature-name]
+```
+
+Generate failing acceptance tests BEFORE implementation.
+
+**Process:**
+1. Clarify requirements with stakeholder
+2. Write acceptance criteria (Given/When/Then)
+3. Generate failing automated test
+4. Hand off to implementation
+
+**Example:**
+```bash
+/forge:test atdd user-registration
+
+Generating ATDD Tests:
+✓ Scenario: Successful registration
+✓ Scenario: Invalid email format
+✓ Scenario: Duplicate email
+✓ Scenario: Weak password rejection
+
+4 acceptance tests generated (all failing - RED phase)
+Ready for implementation.
+```
+
+**Required:** `@test-architect` agent
+
+---
+
+### Test Quality Audit
+
+```bash
+/forge:test review
+```
+
+Audit existing tests for quality (0-100 score).
+
+**Dimensions:**
+- Coverage (15 pts) - Unit >80%, Integration >60%
+- Reliability (15 pts) - No flaky tests, deterministic
+- Maintainability (15 pts) - DRY, clear naming
+- Speed (10 pts) - Fast feedback
+- Readability (10 pts) - Given/When/Then structure
+- Completeness (15 pts) - Happy paths, errors, edges
+- Independence (10 pts) - No dependencies
+- Documentation (10 pts) - Clear descriptions
+
+**Output:**
+```
+Test Quality Audit:
+┌──────────────────┬────────┬─────────────────────────┐
+│ Dimension        │ Score  │ Notes                   │
+├──────────────────┼────────┼─────────────────────────┤
+│ Coverage         │ 12/15  │ Unit 85%, Integration 45%│
+│ Reliability      │ 13/15  │ 2 flaky tests found     │
+│ Maintainability  │ 14/15  │ Good overall            │
+│ Speed            │ 8/10   │ Suite: 4.2 min          │
+│ Readability      │ 9/10   │ Well structured         │
+│ Completeness     │ 12/15  │ Missing edge cases      │
+│ Independence     │ 10/10  │ No dependencies         │
+│ Documentation    │ 7/10   │ Some unclear names      │
+├──────────────────┼────────┼─────────────────────────┤
+│ TOTAL            │ 85/100 │ Grade: B (Good)         │
+└──────────────────┴────────┴─────────────────────────┘
+
+Recommendations:
+1. Fix flaky tests in AuthContext.test.tsx
+2. Add integration tests for checkout flow
+3. Add edge case tests for payment amounts
+```
+
+**Required:** `@test-architect` agent
+
+---
+
+### CI/CD Pipeline Setup
+
+```bash
+/forge:test ci
+```
+
+Configure test automation pipeline for CI/CD.
+
+**Supported Platforms:**
+- GitHub Actions
+- GitLab CI
+- Jenkins
+- Azure DevOps
+- CircleCI
+
+**Output:**
+```
+CI/CD Configuration Generated:
+✓ .github/workflows/test.yml
+  - Lint check
+  - Unit tests with coverage
+  - Integration tests
+  - E2E tests (critical paths)
+  - Security scan
+  - Quality gates
+
+Quality Gates:
+- Unit coverage > 80%
+- All tests pass
+- No lint errors
+- Security scan clean
+```
+
+**Required:** `@test-architect` agent
+
+---
+
 ## Next Steps
 
 After test:
@@ -316,3 +466,4 @@ After test:
 ## Required Skill
 
 **REQUIRED:** `@forge-test`
+**OPTIONAL:** `@risk-based-testing` for risk assessment

@@ -210,6 +210,105 @@ Dependency Missing: UserService
 └── Recommendation: Implement UserService before dependent tasks
 ```
 
+## Test Gate Enforcement
+
+Build automatically enforces test gates before completion:
+
+### Gate Sequence
+
+```
+Build Tasks Complete
+        │
+        ▼
+┌──────────────────┐
+│   Test Gate 1    │── Unit Tests Pass?
+│   (Mandatory)    │   └── Coverage > 80%
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│   Test Gate 2    │── Integration Tests Pass?
+│   (Mandatory)    │   └── No failures
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│   Test Gate 3    │── Type Check Pass?
+│   (Mandatory)    │   └── Zero errors
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│   Test Gate 4    │── E2E Tests Pass?
+│   (Optional)     │   └── Critical paths only
+└────────┬─────────┘
+         │
+         ▼
+   Build Complete
+```
+
+### Gate Failure Actions
+
+If any mandatory gate fails:
+
+```
+Test Gate Failed: Unit Tests
+├── Status: 2 tests failed
+├── Coverage: 76% (below 80% threshold)
+├── Options:
+│   [fix]       - Fix failing tests now
+│   [override]  - Skip gate (requires reason)
+│   [abort]     - Stop build
+└── Recommendation: Fix AuthContext tests
+```
+
+### Ralph Loop Integration
+
+When using `--ralph` flag, tests run in loop until pass:
+
+```bash
+/forge:build --ralph
+
+Ralph Loop:
+1. Implement task
+2. Run tests
+3. Tests pass? → Complete
+4. Tests fail? → Fix → Go to 2
+```
+
+### Test-First Workflow
+
+Build phase follows test-first pattern:
+
+```
+┌─────────────┐
+│  Tests from │── From /forge:test (ATDD generated)
+│  Plan Phase │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│  Implement  │── Build phase
+│   Feature   │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│  Run Tests  │── Verify against tests
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│   Tests     │── All green?
+│   Pass?     │
+└──────┬──────┘
+       │
+   Yes │ No
+   ┌──┴──┐
+   ▼     ▼
+Done  Iterate
+```
+
 ## Next Steps
 
 After build:
