@@ -1,6 +1,7 @@
 ---
 name: forge:personalize
 description: Personalize FORGE configuration for your specific project
+disable-model-invocation: true
 ---
 
 # /forge:personalize

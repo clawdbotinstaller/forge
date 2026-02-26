@@ -2,6 +2,7 @@
 name: forge:help
 description: Show current FORGE workflow status, detect workspace state, and recommend next steps
 argument-hint: "[optional: specific question]"
+disable-model-invocation: true
 ---
 
 # /forge:help

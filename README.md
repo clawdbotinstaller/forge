@@ -1,6 +1,6 @@
 # FORGE Master Plugin
 
-**Comprehensive 10-phase development workflow** combining the best of Arkived, Superpowers, Design-Forge, and BMAD methodologies. Fully self-contained with 46+ skills, 24 commands, 12+ agents, and 6 lifecycle hooks.
+**Comprehensive 10-phase development workflow** combining the best of Arkived, Superpowers, Design-Forge, and BMAD methodologies. Fully self-contained with 36 skills, 25 commands, 18 agents, and 6 lifecycle hooks.
 
 ## Philosophy
 
@@ -129,7 +129,7 @@ Brainstorm phase spawns 4+ agents in parallel:
 - Explorer 3: Pragmatism/simplicity
 - Explorer 4: Risks/edge cases
 
-Then debaters argue best approach with Karthy guidelines.
+Then debaters argue best approach with Karpathy guidelines.
 
 ### 4. Initialization (Phase 0) - Personalized Setup
 **Auto-detect workspace and configure FORGE**
@@ -162,7 +162,7 @@ Then debaters argue best approach with Karthy guidelines.
 Build phase uses fresh subagent per task + two-stage review:
 1. Dispatch implementer (using included `subagent-driven-development` skill)
 2. Spec compliance review
-3. Code quality review (Karthy-focused)
+3. Code quality review (Karpathy-focused)
 4. Iterate until approved
 
 **Included superpowers skills:**
@@ -529,7 +529,7 @@ FORGE brings together the best from:
 | **Arkived** | ✅ FULLY INTEGRATED: All 29+ compound-engineering agents seamlessly called by FORGE workflows. Review agents (performance-oracle, security-sentinel, architecture-strategist) auto-spawned in `/forge:review`. Research agents (best-practices-researcher, pattern-recognition-specialist) auto-spawned in `/forge:research`. Brainstorming agents auto-spawned in `/forge:brainstorm`. |
 | **Superpowers** | ✅ FULLY INTEGRATED: Writing-plans, subagent-driven-development, systematic-debugging, TDD, verification |
 | **BMAD Method** | Progressive context, implementation readiness checks, project-context.md, parallel research |
-| **SLFG** | Multi-agent debate, Karthy enforcement throughout, file-based agent communication |
+| **SLFG** | Multi-agent debate, Karpathy enforcement throughout, file-based agent communication |
 | **Design-Forge** | ✅ FULLY INTEGRATED: Stitch integration, design system compliance, React generation, quality auditing, Cloudflare integration |
 
 ## How the Integration Works

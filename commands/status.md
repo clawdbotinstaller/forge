@@ -2,6 +2,7 @@
 name: forge:status
 description: Show detailed FORGE workflow progress and current phase status
 argument-hint: "[optional: verbose flag]"
+disable-model-invocation: true
 ---
 
 # FORGE Status Command

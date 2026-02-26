@@ -1,0 +1,154 @@
+{
+  "name": "FORGE 10-Phase Development Workflow",
+  "version": "0.4.0",
+  "description": "Comprehensive development workflow: Initialize → Brainstorm → Research → Design → Plan → Test → Build → Validate → Review → Learn",
+  "phases": [
+    {
+      "id": "init",
+      "name": "Initialize",
+      "command": "/forge:start",
+      "skill": "forge-init",
+      "description": "Personalize FORGE setup for the project",
+      "artifacts": [".claude/CLAUDE.md"],
+      "optional": false
+    },
+    {
+      "id": "brainstorm",
+      "name": "Brainstorm",
+      "command": "/forge:brainstorm",
+      "skill": "forge-brainstorm",
+      "description": "Explore approaches and generate ideas",
+      "artifacts": ["docs/forge/brainstorm.md"],
+      "optional": false
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "command": "/forge:research",
+      "skill": "forge-research",
+      "description": "Validate ideas and research best practices",
+      "artifacts": ["docs/forge/research.md"],
+      "optional": false
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "command": "/forge:design",
+      "skill": "forge-design",
+      "description": "Create design specifications and mockups",
+      "artifacts": ["docs/forge/design.md"],
+      "optional": false
+    },
+    {
+      "id": "plan",
+      "name": "Plan",
+      "command": "/forge:plan",
+      "skill": "forge-plan",
+      "description": "Create detailed implementation plans",
+      "artifacts": ["docs/forge/plan.md"],
+      "optional": false
+    },
+    {
+      "id": "test",
+      "name": "Test Strategy",
+      "command": "/forge:test",
+      "skill": "forge-test",
+      "description": "Define test strategy and write test cases",
+      "artifacts": ["docs/forge/test.md"],
+      "optional": false
+    },
+    {
+      "id": "build",
+      "name": "Build",
+      "command": "/forge:build",
+      "skill": "forge-build",
+      "description": "Execute implementation with TDD discipline",
+      "artifacts": ["src/", "tests/"],
+      "optional": false
+    },
+    {
+      "id": "validate",
+      "name": "Validate",
+      "command": "/forge:validate",
+      "skill": "forge-validate",
+      "description": "Verify implementation against requirements",
+      "artifacts": ["docs/forge/validate.md"],
+      "optional": false
+    },
+    {
+      "id": "review",
+      "name": "Review",
+      "command": "/forge:review",
+      "skill": "forge-review",
+      "description": "Code review and quality assessment",
+      "artifacts": ["docs/forge/review.md"],
+      "optional": false
+    },
+    {
+      "id": "learn",
+      "name": "Learn",
+      "command": "/forge:learn",
+      "skill": "forge-learn",
+      "description": "Capture knowledge and update memory",
+      "artifacts": ["docs/forge/learn.md"],
+      "optional": false
+    }
+  ],
+  "quickCommands": [
+    {
+      "name": "/forge:quick",
+      "description": "Quick task execution for small changes"
+    },
+    {
+      "name": "/forge:help",
+      "description": "Show workflow status and recommendations"
+    },
+    {
+      "name": "/forge:swarm",
+      "description": "Parallel subagent execution"
+    }
+  ],
+  "agents": {
+    "skill-router": {
+      "description": "Routes tasks to appropriate skills and agents",
+      "trigger": "session_start"
+    },
+    "builder": {
+      "description": "Executes implementation tasks with TDD",
+      "trigger": "build_phase"
+    },
+    "researcher": {
+      "description": "Researches solutions and best practices",
+      "trigger": "research_phase"
+    },
+    "security-reviewer": {
+      "description": "Security-focused code review",
+      "trigger": "review_phase"
+    },
+    "performance-guardian": {
+      "description": "Performance analysis and optimization",
+      "trigger": "optimization_request"
+    },
+    "brainstormer": {
+      "description": "Ideation and exploration",
+      "trigger": "brainstorm_phase"
+    },
+    "mass-change": {
+      "description": "Codebase-wide modifications",
+      "trigger": "mass_change_request"
+    },
+    "docs-maintainer": {
+      "description": "Documentation maintenance",
+      "trigger": "doc_drift"
+    },
+    "latex-validator": {
+      "description": "LaTeX validation for math rendering",
+      "trigger": "latex_content"
+    }
+  },
+  "integration": {
+    "mcpServers": ["stitch", "context7", "memory"],
+    "hooks": ["PreCompact", "PreToolUse", "PostToolUse", "SessionStart", "UserPromptSubmit"],
+    "memorySystems": ["entity", "pattern", "learning", "consolidated"]
+  }
+}

@@ -5,6 +5,8 @@
 
 set -e
 
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}"
+
 # Detect file type and format accordingly
 FILE="$1"
 

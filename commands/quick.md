@@ -2,6 +2,7 @@
 name: forge:quick
 description: Streamlined workflow for rapid development - skips exploration phases
 argument-hint: "[feature or fix description]"
+disable-model-invocation: true
 ---
 
 # /forge:quick

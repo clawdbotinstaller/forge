@@ -2,6 +2,7 @@
 name: forge:resolve-todos
 description: Resolve all pending CLI todos using parallel processing
 argument-hint: "[optional: specific todo ID or pattern]"
+disable-model-invocation: true
 ---
 
 Resolve all TODO comments using parallel processing.

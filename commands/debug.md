@@ -2,6 +2,7 @@
 name: forge:debug
 description: Standalone debugging workflow for bugs, test failures, or unexpected behavior - outside the main 9-phase flow
 argument-hint: "[bug description or error message]"
+disable-model-invocation: true
 ---
 
 # /forge:debug
@@ -54,7 +55,7 @@ Use `/forge:debug` when:
 
 ### Phase 3: Fix
 
-**Minimal fix following Karthy guidelines:**
+**Minimal fix following Karpathy guidelines:**
 1. Address root cause (not symptom)
 2. One logical change
 3. Changed lines < 50

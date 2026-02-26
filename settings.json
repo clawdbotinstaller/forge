@@ -1,0 +1,129 @@
+{
+  "skillRouter": {
+    "enabled": true,
+    "agent": "skill-router",
+    "autoRoute": true,
+    "enforceOnBypass": true,
+    "sessionStartCheck": true
+  },
+  "memory": {
+    "enabled": true,
+    "persistenceLayer": "file-system",
+    "memoryPath": ".claude/memory",
+    "consolidationInterval": "weekly",
+    "entityTracking": true,
+    "temporalValidity": true,
+    "autoLoadPatterns": true,
+    "autoLoadLearnings": true
+  },
+  "learning": {
+    "autoCapturePatterns": true,
+    "captureSuccessfulImplementations": true,
+    "captureFailedAttempts": true,
+    "captureDesignDecisions": true
+  },
+  "subagents": {
+    "skill-router": {
+      "model": "opus",
+      "promptFile": "agents/skill-router.md",
+      "allowedTools": ["Read", "Glob", "Grep"],
+      "autoLoadSkills": ["forge-skill-router"],
+      "runAtSessionStart": true
+    },
+    "design-reviewer": {
+      "model": "opus",
+      "promptFile": "agents/design-reviewer.md",
+      "allowedTools": ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "MCP"],
+      "autoLoadSkills": ["frontend-design", "vercel-react-best-practices", "memory-systems"]
+    },
+    "performance-guardian": {
+      "model": "opus",
+      "promptFile": "agents/performance-guardian.md",
+      "allowedTools": ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "MCP"],
+      "autoLoadSkills": ["vercel-react-best-practices", "memory-systems", "systematic-debugging"]
+    },
+    "latex-validator": {
+      "model": "opus",
+      "promptFile": "agents/latex-validator.md",
+      "allowedTools": ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "MCP"],
+      "autoLoadSkills": ["memory-systems", "systematic-debugging"]
+    },
+    "mass-change": {
+      "model": "opus",
+      "promptFile": "agents/mass-change.md",
+      "allowedTools": ["Read", "Glob", "Grep", "Edit", "Write", "Bash", "MCP"],
+      "autoLoadSkills": ["memory-systems", "writing-plans"],
+      "requiresConfirmation": true
+    },
+    "docs-maintainer": {
+      "model": "opus",
+      "promptFile": "agents/docs-maintainer.md",
+      "allowedTools": ["Read", "Glob", "Grep", "Edit", "Write", "Bash"],
+      "autoLoadSkills": ["memory-systems"],
+      "triggers": ["update docs", "doc drift", "documentation"]
+    }
+  },
+  "context7": {
+    "documentationSources": [
+      "react",
+      "react-router",
+      "framer-motion",
+      "gsap",
+      "tailwindcss",
+      "katex",
+      "radix-ui",
+      "hono",
+      "cloudflare-workers"
+    ],
+    "autoQuery": true,
+    "cacheResults": true,
+    "queryThreshold": 0.7
+  },
+  "hooks": {
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "hooks/PreCompact/pre-compact.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "hooks/PreToolUse/block-env-edits.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "filter": "*.tsx|*.ts",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "hooks/PostToolUse/type-check.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "hooks/SessionStart/forge-init.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

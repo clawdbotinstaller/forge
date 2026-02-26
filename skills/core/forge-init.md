@@ -79,7 +79,7 @@ What are we building?
 Suggested workflow:
 • All 9 phases (Brainstorm → Learn)
 • Intelligent artifact level
-• Karthy guidelines enforced
+• Karpathy guidelines enforced
 
 Start with Phase 1: Brainstorm?
 → [yes/customize/no]

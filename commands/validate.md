@@ -1,6 +1,7 @@
 ---
 name: forge:validate
 description: Verify implementation against requirements with evidence-based validation
+disable-model-invocation: true
 ---
 
 # /forge:validate

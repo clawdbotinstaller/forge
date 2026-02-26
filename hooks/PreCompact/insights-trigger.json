@@ -1,7 +1,0 @@
-{
-  "matcher": "PreCompact",
-  "hooks": [{
-    "type": "prompt",
-    "prompt": "Context at 5% or below. Create marker file ~/.claude/memory/.insights_pending to trigger /forge:learn on next session."
-  }]
-}

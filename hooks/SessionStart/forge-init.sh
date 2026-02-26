@@ -3,11 +3,16 @@
 # Detects workspace state and initializes FORGE workflow
 # Personalize: Adjust detection logic for your project structure
 
+set -e
+
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}"
+MEMORY_DIR="${PLUGIN_ROOT}/.claude/memory"
+
 echo "🔥 FORGE Initialization"
 echo "======================"
 
 # Check if this is a new FORGE workspace
-if [ ! -d ".claude/forge" ]; then
+if [ ! -d "${PLUGIN_ROOT}/.claude/forge" ]; then
   echo ""
   echo "Welcome to FORGE!"
   echo ""
@@ -36,9 +41,17 @@ if [ ! -d ".claude/forge" ]; then
   echo ""
 fi
 
+# Check for pending insights marker
+if [ -f "${MEMORY_DIR}/.insights_pending/active" ]; then
+  echo ""
+  echo "📊 Pending Insights Available"
+  echo "Run /forge:learn to process captured knowledge from previous session"
+  echo ""
+fi
+
 # Check for in-progress FORGE workflow
-if [ -f ".claude/forge/state.json" ]; then
-  CURRENT_PHASE=$(cat .claude/forge/state.json | grep -o '"current_phase":"[^"]*"' | cut -d'"' -f4)
+if [ -f "${PLUGIN_ROOT}/.claude/forge/state.json" ]; then
+  CURRENT_PHASE=$(cat "${PLUGIN_ROOT}/.claude/forge/state.json" | grep -o '"current_phase":"[^"]*"' | cut -d'"' -f4)
 
   if [ ! -z "$CURRENT_PHASE" ]; then
     echo ""
@@ -49,5 +62,15 @@ if [ -f ".claude/forge/state.json" ]; then
     echo ""
   fi
 fi
+
+# Create memory directories if they don't exist
+mkdir -p "${MEMORY_DIR}/entities"
+mkdir -p "${MEMORY_DIR}/patterns"
+mkdir -p "${MEMORY_DIR}/learnings"
+mkdir -p "${MEMORY_DIR}/session-snapshots"
+
+echo ""
+echo "✅ FORGE ready"
+echo ""
 
 exit 0

@@ -2,6 +2,7 @@
 name: forge:build
 description: Execute implementation plans with subagent-driven development and Ralph Loop integration
 argument-hint: "[plan reference or skip if following workflow]"
+disable-model-invocation: true
 ---
 
 # /forge:build
@@ -105,7 +106,7 @@ Verify compliance with:
 
 ### 7. Code Quality Review
 
-Karthy guidelines check:
+Karpathy guidelines check:
 - Naming conventions
 - Code organization
 - Error handling
@@ -154,7 +155,7 @@ Best for:
                                              │
 ┌─────────────┐    ┌─────────────┐    ┌──────┴──────┐
 │   Iterate   │ <- │   Review    │ <- │   Quality   │
-│  if needed  │    │   (Karthy)  │    │    Gate     │
+│  if needed  │    │   (Karpathy)  │    │    Gate     │
 └─────────────┘    └─────────────┘    └─────────────┘
 ```
 

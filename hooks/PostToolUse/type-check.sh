@@ -5,6 +5,8 @@
 
 set -e
 
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}"
+
 FILE="$1"
 
 # Only run on TypeScript files

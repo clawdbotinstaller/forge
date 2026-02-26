@@ -1,6 +1,7 @@
 ---
 name: forge:review
 description: Comprehensive code review with parallel specialized reviewers
+disable-model-invocation: true
 ---
 
 # /forge:review
@@ -21,7 +22,7 @@ Comprehensive code review with parallel specialized reviewers.
 - `performance-reviewer` - Speed optimization
 - `security-reviewer` - Security audit
 
-## Karthy Check
+## Karpathy Check
 
 - Lines < 50 per edit
 - One logical change

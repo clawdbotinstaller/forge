@@ -1,0 +1,27 @@
+{
+  "name": "forge",
+  "version": "0.4.0",
+  "description": "FORGE - Comprehensive 10-phase development workflow. Initialize → Brainstorm → Research → Design → Plan → Test → Build → Validate → Review → Learn. Adapts to any codebase with personalized initialization, compound engineering agents, and continuous learning.",
+  "author": {
+    "name": "Muadh Sambul",
+    "email": "user@example.com"
+  },
+  "keywords": [
+    "workflow",
+    "development",
+    "planning",
+    "execution",
+    "karpathy-guidelines",
+    "multi-agent",
+    "continuous-learning",
+    "security",
+    "hooks",
+    "debugging",
+    "adaptable"
+  ],
+  "commands": "commands",
+  "agents": "agents",
+  "skills": "skills",
+  "hooks": "hooks/hooks.json",
+  "mcpServers": ".mcp.json"
+}

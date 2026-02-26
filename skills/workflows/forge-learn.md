@@ -156,7 +156,7 @@ time_total: 95min
 ## Metrics
 - Time per phase: [breakdown]
 - Tests pass rate: 95%
-- Karthy violations: 2 (minor)
+- Karpathy violations: 2 (minor)
 
 ## Workflow Improvements
 Suggestions for next time:

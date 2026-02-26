@@ -180,7 +180,7 @@ Continue with remaining tasks?
 | Option | Values | Description |
 |--------|--------|-------------|
 | `--level` | minimal, intelligent, maximal | Artifact level |
-| `--karthy-strict` | - | Enforce strict Karthy guidelines |
+| `--karthy-strict` | - | Enforce strict Karpathy guidelines |
 | `--security` | on, off | Enable security checks |
 | `--ralph` | - | Use Ralph Loop for build phase |
 | `--sequential` | - | Disable swarm mode, run sequentially |

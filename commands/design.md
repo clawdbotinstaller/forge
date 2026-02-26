@@ -2,6 +2,7 @@
 name: forge:design
 description: Generate UI/UX specifications with Stitch integration
 argument-hint: "[design requirements or skip if following workflow]"
+disable-model-invocation: true
 ---
 
 # /forge:design

@@ -106,7 +106,7 @@ Smart orchestrator for the FORGE 9-phase development workflow. Detects current p
 **Adjusts recommendations:**
 - Minimal level: Suggests skipping phases
 - Gates disabled: Skips validate
-- Karthy disabled: No surgical precision checks
+- Karpathy disabled: No surgical precision checks
 
 ## Ralph Loop Integration
 

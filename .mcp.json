@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "stitch": {
+      "command": "npx",
+      "args": ["@_davideast/stitch-mcp", "proxy"],
+      "env": {
+        "STITCH_API_KEY": "${STITCH_API_KEY}"
+      }
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": ".claude/memory/graph/memory.json"
+      }
+    }
+  }
+}

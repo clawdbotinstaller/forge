@@ -2,6 +2,7 @@
 name: forge:ralph
 description: Iterative execution mode for large plans with clearly defined steps - prevents false success declarations
 argument-hint: "[objective] --plan [path] --completion-promise [text] --max-iterations [n]"
+disable-model-invocation: true
 ---
 
 # /forge:ralph

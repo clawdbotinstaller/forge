@@ -2,6 +2,7 @@
 name: forge:learn
 description: Capture patterns, learnings, and update documentation after workflow completion. Auto-triggers with insights at 5% context.
 argument-hint: "[what was solved]"
+disable-model-invocation: true
 ---
 
 # /forge:learn

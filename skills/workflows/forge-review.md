@@ -213,7 +213,7 @@ status: approved
 ## Approval Criteria
 
 All reviewers must approve:
-- [ ] Karthy guidelines followed
+- [ ] Karpathy guidelines followed
 - [ ] Design system compliant
 - [ ] Performance acceptable
 - [ ] Security reviewed
@@ -235,6 +235,6 @@ All reviewers must approve:
 
 | Level | Review Depth |
 |-------|--------------|
-| Minimal | Karthy only |
-| Intelligent | Karthy + Design + Performance |
+| Minimal | Karpathy only |
+| Intelligent | Karpathy + Design + Performance |
 | Maximal | All + Security + Accessibility |

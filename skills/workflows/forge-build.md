@@ -197,4 +197,4 @@ Build is complete when:
 - [ ] TypeScript compiles
 - [ ] Spec compliance verified
 - [ ] Code quality approved
-- [ ] Karthy guidelines followed
+- [ ] Karpathy guidelines followed

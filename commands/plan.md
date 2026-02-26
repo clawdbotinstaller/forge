@@ -2,11 +2,12 @@
 name: forge:plan
 description: Create surgical implementation plans with TDD and bite-sized tasks
 argument-hint: "[feature to plan or skip if following workflow]"
+disable-model-invocation: true
 ---
 
 # /forge:plan
 
-Create surgical implementation plans with TDD discipline and Karthy guideline enforcement.
+Create surgical implementation plans with TDD discipline and Karpathy guideline enforcement.
 
 ## Usage
 
@@ -21,7 +22,7 @@ Create surgical implementation plans with TDD discipline and Karthy guideline en
 1. **Load design** - Use specifications
 2. **Analyze dependencies** - Map file relationships
 3. **Create task breakdown** - Bite-sized tasks
-4. **Karthy review** - Ensure surgical precision
+4. **Karpathy review** - Ensure surgical precision
 5. **Document plan** - Write to `docs/forge/plan.md`
 
 ## Output

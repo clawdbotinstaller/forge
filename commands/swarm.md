@@ -2,6 +2,7 @@
 name: forge:swarm
 description: Run agent team in parallel or sequential mode
 argument-hint: "[task description] [--sequential]"
+disable-model-invocation: true
 ---
 
 # FORGE Swarm Command

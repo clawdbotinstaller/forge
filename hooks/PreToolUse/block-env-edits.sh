@@ -3,6 +3,8 @@
 # Prevents accidental commits of sensitive files
 # Personalize: Add other sensitive file patterns
 
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/../.." && pwd)}"
+
 FILE="$1"
 OPERATION="$2"
 

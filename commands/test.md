@@ -2,6 +2,7 @@
 name: forge:test
 description: Run comprehensive tests with parallel testing agents - unit, integration, and e2e
 argument-hint: "[test type or file pattern]"
+disable-model-invocation: true
 ---
 
 # /forge:test

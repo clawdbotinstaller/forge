@@ -2,6 +2,7 @@
 name: forge:research
 description: Validate approaches with BMAD-style parallel research subagents
 argument-hint: "[topic or approach to research]"
+disable-model-invocation: true
 ---
 
 # /forge:research

@@ -2,6 +2,7 @@
 name: forge:verify
 description: Verification before completion using evidence-based validation
 argument-hint: "[what to verify]"
+disable-model-invocation: true
 ---
 
 # FORGE Verify Command
